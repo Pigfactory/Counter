@@ -10,8 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var a: TableViewCell?
-    var items = ["운동 1"]
+    var items = ["이름 1"]
 
     
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +21,7 @@ class ViewController: UIViewController {
 
 
     @IBAction func add(_ sender: UIBarButtonItem) {
-        items.append("Item \(items.count + 1)")
+        items.append("이름 \(items.count + 1)")
         
         let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
         tableView.insertRows(at: [insertionIndexPath as IndexPath], with: UITableView.RowAnimation.automatic)

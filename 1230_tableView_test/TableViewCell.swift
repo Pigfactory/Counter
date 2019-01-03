@@ -11,13 +11,15 @@ import UIKit
 class TableViewCell: UITableViewCell {
 
     var items = ["10", "20", "30", "40", "50"]
-    var choices = ["1","2","3","4","5"]
-    
+    var choices = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15"]
+    var weight = ["5","10","15","20","25","30","35","40","45","50","55","60","65","70","75"]
+
     var pickerView = UIPickerView()
     var typeValue = String()
     
     var setValue = "1"
     var countValue = "10"
+    var weightValue = "5"
     
     var set = 0
     var count = 0
@@ -25,16 +27,22 @@ class TableViewCell: UITableViewCell {
     var viewController: ViewController?
     
     @IBOutlet weak var labelView: UILabel!
-    @IBOutlet weak var view: UIView!
-    @IBOutlet weak var view2: UIView!
+    @IBOutlet weak var view: UIView!    //왼쪽 배경
+    @IBOutlet weak var view2: UIView!   //오른쪽 배경
     
     @IBOutlet weak var blackView: UIView!
     @IBOutlet weak var blackView2: UIView!
+    @IBOutlet weak var blackView3: UIView!
+    
+    @IBOutlet weak var whiteView: UIView!
+    @IBOutlet weak var whiteView2: UIView!
+    @IBOutlet weak var whiteView3: UIView!
     
     var nameTextField: UITextField?
     
     @IBOutlet weak var setText: UIButton!
     @IBOutlet weak var countText: UIButton!
+    @IBOutlet weak var weightText: UIButton!
     
     @IBOutlet weak var number: UILabel!
     
@@ -42,6 +50,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var resetButton: UIButton!
     @IBOutlet weak var pauseButton: UIButton!
+    
     var timer = Timer()
     var counter = 0.0
     var isRunning = false
@@ -51,15 +60,28 @@ class TableViewCell: UITableViewCell {
 //        view2.layer.cornerRadius = 10
         viewRightRoundCorners(item: view2, cornerRadius: 10)
         viewLeftRoundCorners(item: view, cornerRadius: 10)
+        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        view2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        
         buttonView.layer.cornerRadius = 10
         buttonView.clipsToBounds = true
-
         
         blackView.layer.cornerRadius = 10
+        blackView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        whiteView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         blackView.clipsToBounds = true
         
         blackView2.layer.cornerRadius = 10
+        blackView2.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        whiteView2.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         blackView2.clipsToBounds = true
+        
+        blackView3.layer.cornerRadius = 10
+        blackView3.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        whiteView3.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        blackView3.clipsToBounds = true
+        
+        buttonView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
         
         number.text = "\(counter)"
         startButton.isEnabled = true
@@ -86,17 +108,24 @@ class TableViewCell: UITableViewCell {
         let alert = UIAlertController(title: "운동 세트 설정", message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         alert.isModalInPopover = true
         
-        let pickerFrame1 = UIPickerView(frame: CGRect(x: 30, y: 70, width: 100, height: 160))
-        let pickerFrame2 = UIPickerView(frame: CGRect(x: 140, y: 70, width: 100, height: 160))
-        let set = UILabel(frame: CGRect(x: 70, y: 60, width: 100, height: 20))
-        let count = UILabel(frame: CGRect(x: 165, y: 60, width: 100, height: 20))
+        let pickerFrame1 = UIPickerView(frame: CGRect(x: 20, y: 70, width: 70, height: 160))
+        let pickerFrame2 = UIPickerView(frame: CGRect(x: 100, y: 70, width: 70, height: 160))
+        let pickerFrame3 = UIPickerView(frame: CGRect(x: 180, y: 70, width: 70, height: 160))
+
+        let set = UILabel(frame: CGRect(x: 40, y: 60, width: 50, height: 20))
+        let count = UILabel(frame: CGRect(x: 120, y: 60, width: 50, height: 20))
+        let weight = UILabel(frame: CGRect(x: 200, y: 60, width: 50, height: 20))
 
         alert.view.addSubview(pickerFrame1)
         alert.view.addSubview(pickerFrame2)
+        alert.view.addSubview(pickerFrame3)
+        
         alert.view.addSubview(set)
         alert.view.addSubview(count)
-        set.text = "SET"
-        count.text = "COUNT"
+        alert.view.addSubview(weight)
+        set.text = "세트"
+        count.text = "개수"
+        weight.text = "중량"
         
         
         pickerFrame1.dataSource = self
@@ -105,11 +134,15 @@ class TableViewCell: UITableViewCell {
         pickerFrame2.dataSource = self
         pickerFrame2.delegate = self
         
+        pickerFrame3.dataSource = self
+        pickerFrame3.delegate = self
+        
         pickerFrame1.tag = 0
         pickerFrame2.tag = 1
+        pickerFrame3.tag = 2
         
         alert.addTextField(configurationHandler: nameTextField)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancel))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: self.ok))
         viewController?.present(alert, animated: true, completion: nil )
     }
@@ -124,8 +157,13 @@ class TableViewCell: UITableViewCell {
         labelView.text = nameTextField?.text
         setText.setTitle(setValue, for: UIControl.State.normal)
         countText.setTitle(countValue, for: UIControl.State.normal)
-        
-        
+        weightText.setTitle(weightValue, for: UIControl.State.normal)
+    }
+    
+    func cancel(alert: UIAlertAction) {
+        setValue = "1"
+        countValue = "10"
+        weightValue = "5"
     }
     
     @IBAction func startButton(_ sender: UIButton) {
@@ -188,7 +226,16 @@ extension TableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return choices.count
+        switch pickerView.tag {
+        case 0:
+            return choices.count
+        case 1:
+            return items.count
+        case 2:
+            return weight.count
+        default:
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -197,21 +244,24 @@ extension TableViewCell: UIPickerViewDelegate, UIPickerViewDataSource {
             return choices[row]
         case 1:
             return items[row]
+        case 2:
+            return weight[row]
         default:
             return "kkk"
         }
     }
-    
+
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
         case 0:
             setValue = choices[row]
         case 1:
             countValue = items[row]
+        case 2:
+            weightValue = weight[row]
         default:
             print("nothing")
         }
     }
-    
 }
 
