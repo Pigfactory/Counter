@@ -14,6 +14,8 @@
 		08BE600E21D8B8F1000F5427 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08BE600D21D8B8F1000F5427 /* Assets.xcassets */; };
 		08BE601121D8B8F1000F5427 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BE600F21D8B8F1000F5427 /* LaunchScreen.storyboard */; };
 		08BE601921D8BB96000F5427 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE601821D8BB96000F5427 /* TableViewCell.swift */; };
+		08C66A7F21E2368800CD8B99 /* CountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08C66A7E21E2368800CD8B99 /* CountDownViewController.swift */; };
+		08EFE44B21E1EA630068EF82 /* CounterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08EFE44A21E1EA630068EF82 /* CounterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		08BE601021D8B8F1000F5427 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08BE601221D8B8F1000F5427 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08BE601821D8BB96000F5427 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		08C66A7E21E2368800CD8B99 /* CountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownViewController.swift; sourceTree = "<group>"; };
+		08EFE44A21E1EA630068EF82 /* CounterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +74,8 @@
 				08BE600621D8B8F0000F5427 /* AppDelegate.swift */,
 				08BE600821D8B8F0000F5427 /* ViewController.swift */,
 				08BE601821D8BB96000F5427 /* TableViewCell.swift */,
+				08EFE44A21E1EA630068EF82 /* CounterViewController.swift */,
+				08C66A7E21E2368800CD8B99 /* CountDownViewController.swift */,
 				08BE600A21D8B8F0000F5427 /* Main.storyboard */,
 				08BE600D21D8B8F1000F5427 /* Assets.xcassets */,
 				08BE600F21D8B8F1000F5427 /* LaunchScreen.storyboard */,
@@ -149,6 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08C66A7F21E2368800CD8B99 /* CountDownViewController.swift in Sources */,
+				08EFE44B21E1EA630068EF82 /* CounterViewController.swift in Sources */,
 				08BE601921D8BB96000F5427 /* TableViewCell.swift in Sources */,
 				08BE600921D8B8F0000F5427 /* ViewController.swift in Sources */,
 				0822703921D8CDB4006325D4 /* PickerViewController.swift in Sources */,

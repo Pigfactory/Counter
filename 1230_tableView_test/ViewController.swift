@@ -19,13 +19,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
     }
 
-
-    @IBAction func add(_ sender: UIBarButtonItem) {
+    @IBAction func add(_ sender: Any) {
         items.append("이름 \(items.count + 1)")
         
         let insertionIndexPath = NSIndexPath(row: items.count - 1, section: 0)
         tableView.insertRows(at: [insertionIndexPath as IndexPath], with: UITableView.RowAnimation.automatic)
-        
     }
     
     func Delete(cell: UITableViewCell) {

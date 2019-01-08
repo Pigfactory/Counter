@@ -58,30 +58,33 @@ class TableViewCell: UITableViewCell {
     override func awakeFromNib() {
 //        view.layer.cornerRadius = 10
 //        view2.layer.cornerRadius = 10
-        viewRightRoundCorners(item: view2, cornerRadius: 10)
-        viewLeftRoundCorners(item: view, cornerRadius: 10)
-        view.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
-        view2.backgroundColor = UIColor.lightGray.withAlphaComponent(0.4)
+        viewRightRoundCorners(item: view2, cornerRadius: 15)
+        viewLeftRoundCorners(item: view, cornerRadius: 15)
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.7)
+        view2.backgroundColor = UIColor.black.withAlphaComponent(0.7)
         
-        buttonView.layer.cornerRadius = 10
+        buttonView.layer.cornerRadius = 15
         buttonView.clipsToBounds = true
         
-        blackView.layer.cornerRadius = 10
-        blackView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
-        whiteView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        //세트
+        blackView.layer.cornerRadius = 15
+        blackView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        whiteView.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         blackView.clipsToBounds = true
         
-        blackView2.layer.cornerRadius = 10
-        blackView2.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
-        whiteView2.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        //회수
+        blackView2.layer.cornerRadius = 15
+        blackView2.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        whiteView2.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         blackView2.clipsToBounds = true
         
-        blackView3.layer.cornerRadius = 10
-        blackView3.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
-        whiteView3.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        //중량
+        blackView3.layer.cornerRadius = 15
+        blackView3.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+        whiteView3.backgroundColor = UIColor.white.withAlphaComponent(0.2)
         blackView3.clipsToBounds = true
         
-        buttonView.backgroundColor = UIColor.darkGray.withAlphaComponent(0.4)
+        buttonView.backgroundColor = UIColor.black.withAlphaComponent(0.6)
         
         number.text = "\(counter)"
         startButton.isEnabled = true
