@@ -23,6 +23,10 @@ class CountDownViewController: UIViewController {
     var s:UInt = 0
     var set:Int = 0
     
+    var setH: UInt = 0
+    var setM: UInt = 0
+    var setS: UInt = 0
+    
     var stopwatchString = ""
 
 
@@ -99,16 +103,16 @@ class CountDownViewController: UIViewController {
         set = 0
         setBars.removeAll()
 
-        let alert = UIAlertController(title: "시간 & 세트 설정", message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Time & Sets", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         alert.isModalInPopover = true
         
-        let pickerFrame1 = UIPickerView(frame: CGRect(x: 20, y: 70, width: 70, height: 160))
-        let pickerFrame2 = UIPickerView(frame: CGRect(x: 100, y: 70, width: 70, height: 160))
-        let pickerFrame3 = UIPickerView(frame: CGRect(x: 180, y: 70, width: 70, height: 160))
+        let pickerFrame1 = UIPickerView(frame: CGRect(x: 5, y: 50, width: 80, height: 160))
+        let pickerFrame2 = UIPickerView(frame: CGRect(x: 85, y: 50, width: 80, height: 160))
+        let pickerFrame3 = UIPickerView(frame: CGRect(x: 165, y: 50, width: 100, height: 160))
         
-        let set2 = UILabel(frame: CGRect(x: 40, y: 60, width: 50, height: 20))
-        let count = UILabel(frame: CGRect(x: 120, y: 60, width: 50, height: 20))
-        let weight = UILabel(frame: CGRect(x: 200, y: 60, width: 50, height: 20))
+        let set2 = UILabel(frame: CGRect(x: 65, y: 120, width: 50, height: 20))
+        let count = UILabel(frame: CGRect(x: 145, y: 120, width: 50, height: 20))
+        let weight = UILabel(frame: CGRect(x: 235, y: 120, width: 50, height: 20))
         
         
         alert.view.addSubview(pickerFrame1)
@@ -118,9 +122,9 @@ class CountDownViewController: UIViewController {
         alert.view.addSubview(set2)
         alert.view.addSubview(count)
         alert.view.addSubview(weight)
-        set2.text = "세트"
-        count.text = "시"
-        weight.text = "분"
+        set2.text = "Set"
+        count.text = "hr"
+        weight.text = "min"
         
         
         pickerFrame1.dataSource = self
@@ -136,8 +140,8 @@ class CountDownViewController: UIViewController {
         pickerFrame2.tag = 1
         pickerFrame3.tag = 2
         
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancel))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: self.ok))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancel))
         present(alert, animated: true, completion: nil )
     }
 
@@ -159,6 +163,9 @@ class CountDownViewController: UIViewController {
         }
         
         if set != 0 {
+            setH = h
+            setM = m
+            setS = s
             for i in 0...(set - 1) {
                 setBars.append(bars[i])
                 setBars[i].backgroundColor = UIColor.red.withAlphaComponent(0.4)
@@ -179,7 +186,7 @@ class CountDownViewController: UIViewController {
         playButtonView.setTitleColor(UIColor.darkGray, for: UIControl.State.normal)
 
         timer = Timer.scheduledTimer(
-            timeInterval: 0.1,
+            timeInterval: 0.01,
             target: self,
             selector: #selector(updateStopwatch),
             userInfo: nil,
@@ -196,6 +203,13 @@ class CountDownViewController: UIViewController {
     }
     
     @IBAction func resetButton(_ sender: Any) {
+        if set != 0 {
+            for i in 0...(set - 1) {
+                setBars.append(bars[i])
+                setBars[i].backgroundColor = UIColor.red.withAlphaComponent(0)
+            }
+        }
+        
         timer.invalidate()
 
         playButtonView.isEnabled = false
@@ -211,18 +225,30 @@ class CountDownViewController: UIViewController {
     }
     
     @objc func updateStopwatch() {
-        if set != 0 {
+        if h > 0 || m > 0 || s >= 0 {
             update()
-            set -= 1
-            if set > 1 {
-                for i in 0...(set - 1) {
-                    setBars.append(bars[i])
-                    setBars[i].backgroundColor = UIColor.red.withAlphaComponent(0.4)
-                }
+            if h == 0 && m == 0 && s == 0 && set > 0 {
+                set -= 1
+                setBars[set].backgroundColor = UIColor.red.withAlphaComponent(0)
+                let secondString = setS > 9 ? "\(setS)" : "0\(setS)"
+                let minutesString = setM > 9 ? "\(setM)" : "0\(setM)"
+                let hoursString = setH > 9 ? "\(setH)" : "0\(setH)"
+                
+                stopwatchString = "\(hoursString):\(minutesString):\(secondString)"
+                
+                timer = Timer.scheduledTimer(
+                    timeInterval: 0.01,
+                    target: self,
+                    selector: #selector(updateStopwatch),
+                    userInfo: nil,
+                    repeats: true
+                )
+                h = setH
+                m = setM
+                s = setS
+                
+                update()
             }
-        }
-        if set == 0 {
-            update()
         }
     }
     
@@ -237,19 +263,19 @@ class CountDownViewController: UIViewController {
                 stopwatchString = "\(hoursString):\(minutesString):\(secondString)"
                 numberLabel.text = stopwatchString
                 timer.invalidate()
-                return
-            }
-            
-            if s == 0 {
-                if m != 0 {
-                    m -= 1
-                    s = 60
+            } else {
+                
+                if s == 0 {
+                    if m != 0 {
+                        m -= 1
+                        s = 60
+                    }
                 }
-            }
-            if m == 0 {
-                if h != 0 {
-                    h -= 1
-                    m = 59
+                if m == 0 {
+                    if h != 0 {
+                        h -= 1
+                        m = 59
+                    }
                 }
             }
         }
@@ -263,22 +289,21 @@ class CountDownViewController: UIViewController {
                 stopwatchString = "\(hoursString):\(minutesString):\(secondString)"
                 numberLabel.text = stopwatchString
                 timer.invalidate()
-                
-                return
-            }
-            m -= 1
-            s = 60
-            s -= 1
-            if s == 0 {
-                if m != 0 {
-                    m -= 1
-                    s = 60
+            } else {
+                m -= 1
+                s = 60
+                s -= 1
+                if s == 0 {
+                    if m != 0 {
+                        m -= 1
+                        s = 60
+                    }
                 }
-            }
-            if m == 0 {
-                if h != 0 {
-                    h -= 1
-                    m = 59
+                if m == 0 {
+                    if h != 0 {
+                        h -= 1
+                        m = 59
+                    }
                 }
             }
         }
@@ -336,7 +361,10 @@ extension CountDownViewController: UIPickerViewDelegate, UIPickerViewDataSource 
         default:
             print("nothing")
         }
+        
     }
+    
+    
     
     
 }

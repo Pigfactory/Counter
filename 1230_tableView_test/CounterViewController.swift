@@ -16,7 +16,7 @@ class CounterViewController: UIViewController {
     
     @IBOutlet weak var resetView: UIButton!
     @IBOutlet weak var pusView: UIButton!
-    var number = 0
+    var number: UInt = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,8 +52,10 @@ class CounterViewController: UIViewController {
     }
 
     @IBAction func minusButton(_ sender: Any) {
-        number -= 1
-        numberToString(number: number)
+        if number > 0 {
+            number -= 1
+            numberToString(number: number)
+        }
     }
 
     @IBAction func plusButton(_ sender: Any) {
@@ -61,7 +63,7 @@ class CounterViewController: UIViewController {
         numberToString(number: number)
     }
     
-    func numberToString(number : Int) {
+    func numberToString(number : UInt) {
         
         var a = String(number)
         

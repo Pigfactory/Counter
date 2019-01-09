@@ -108,16 +108,16 @@ class TableViewCell: UITableViewCell {
     }
     
     @IBAction func alert(_ sender: UIButton) {
-        let alert = UIAlertController(title: "운동 세트 설정", message: "\n\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Workouts", message: "\n\n\n\n\n\n\n\n\n", preferredStyle: .alert)
         alert.isModalInPopover = true
         
-        let pickerFrame1 = UIPickerView(frame: CGRect(x: 20, y: 70, width: 70, height: 160))
-        let pickerFrame2 = UIPickerView(frame: CGRect(x: 100, y: 70, width: 70, height: 160))
-        let pickerFrame3 = UIPickerView(frame: CGRect(x: 180, y: 70, width: 70, height: 160))
+        let pickerFrame1 = UIPickerView(frame: CGRect(x: 5, y: 50, width: 80, height: 160))
+        let pickerFrame2 = UIPickerView(frame: CGRect(x: 85, y: 50, width: 80, height: 160))
+        let pickerFrame3 = UIPickerView(frame: CGRect(x: 165, y: 50, width: 100, height: 160))
 
-        let set = UILabel(frame: CGRect(x: 40, y: 60, width: 50, height: 20))
-        let count = UILabel(frame: CGRect(x: 120, y: 60, width: 50, height: 20))
-        let weight = UILabel(frame: CGRect(x: 200, y: 60, width: 50, height: 20))
+        let set = UILabel(frame: CGRect(x: 65, y: 120, width: 50, height: 20))
+        let count = UILabel(frame: CGRect(x: 145, y: 120, width: 50, height: 20))
+        let weight = UILabel(frame: CGRect(x: 235, y: 120, width: 50, height: 20))
 
         alert.view.addSubview(pickerFrame1)
         alert.view.addSubview(pickerFrame2)
@@ -126,9 +126,9 @@ class TableViewCell: UITableViewCell {
         alert.view.addSubview(set)
         alert.view.addSubview(count)
         alert.view.addSubview(weight)
-        set.text = "세트"
-        count.text = "개수"
-        weight.text = "중량"
+        set.text = "Set"
+        count.text = "Reps"
+        weight.text = "kg"
         
         
         pickerFrame1.dataSource = self
@@ -145,14 +145,14 @@ class TableViewCell: UITableViewCell {
         pickerFrame3.tag = 2
         
         alert.addTextField(configurationHandler: nameTextField)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancel))
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: self.ok))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: self.cancel))
         viewController?.present(alert, animated: true, completion: nil )
     }
     
     func nameTextField(textField: UITextField) {
         nameTextField = textField
-        nameTextField?.text = "운동종류"
+        nameTextField?.text = "Exercise Name"
 //        nameTextField?.placeholder = "운동 종류"
     }
     

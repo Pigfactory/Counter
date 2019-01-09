@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0822703921D8CDB4006325D4 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0822703821D8CDB4006325D4 /* PickerViewController.swift */; };
+		085CED7621E44AED00593276 /* CountDownV2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 085CED7521E44AED00593276 /* CountDownV2ViewController.swift */; };
 		08BE600721D8B8F0000F5427 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE600621D8B8F0000F5427 /* AppDelegate.swift */; };
 		08BE600921D8B8F0000F5427 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08BE600821D8B8F0000F5427 /* ViewController.swift */; };
 		08BE600C21D8B8F0000F5427 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08BE600A21D8B8F0000F5427 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		0822703821D8CDB4006325D4 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
+		085CED7521E44AED00593276 /* CountDownV2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountDownV2ViewController.swift; sourceTree = "<group>"; };
 		08BE600321D8B8F0000F5427 /* 1230_tableView_test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 1230_tableView_test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		08BE600621D8B8F0000F5427 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		08BE600821D8B8F0000F5427 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				08BE601821D8BB96000F5427 /* TableViewCell.swift */,
 				08EFE44A21E1EA630068EF82 /* CounterViewController.swift */,
 				08C66A7E21E2368800CD8B99 /* CountDownViewController.swift */,
+				085CED7521E44AED00593276 /* CountDownV2ViewController.swift */,
 				08BE600A21D8B8F0000F5427 /* Main.storyboard */,
 				08BE600D21D8B8F1000F5427 /* Assets.xcassets */,
 				08BE600F21D8B8F1000F5427 /* LaunchScreen.storyboard */,
@@ -157,6 +160,7 @@
 			files = (
 				08C66A7F21E2368800CD8B99 /* CountDownViewController.swift in Sources */,
 				08EFE44B21E1EA630068EF82 /* CounterViewController.swift in Sources */,
+				085CED7621E44AED00593276 /* CountDownV2ViewController.swift in Sources */,
 				08BE601921D8BB96000F5427 /* TableViewCell.swift in Sources */,
 				08BE600921D8B8F0000F5427 /* ViewController.swift in Sources */,
 				0822703921D8CDB4006325D4 /* PickerViewController.swift in Sources */,
